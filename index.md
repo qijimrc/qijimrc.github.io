@@ -22,7 +22,7 @@
 
 <!-- ## About Me ([CV](/files/cv.jpeg)) -->
 ## About Me
-I am currently a Ph.D. Student at Tsinghua University. My research interests involves Vision-Language Understanding and Knowledge Engineering.
+I am currently a Ph.D. Student at Tsinghua University. My research interests involve Vision-Language Understanding and Knowledge Engineering.
 
 
 
