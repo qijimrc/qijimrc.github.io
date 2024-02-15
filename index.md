@@ -28,7 +28,7 @@ I am currently a Ph.D. Student at Tsinghua University. My research interests inv
 
 ## Publications
 - **Ji Qi**, Ming Ding, Weihan Wang, Yushi Bai, Qingsong Lv, Wenyi Hong, Bin Xu, Lei Hou, Juanzi Li, Yuxiao Dong, Jie Tang. &ensp; *CogCoM: Train Large Vision-Language Models Diving into Details through Chain of Manipulations.* [[arxiv](https://arxiv.org/pdf/2402.04236.pdf)][[code](https://github.com/THUDM/CogCoM)]
-    <details open>
+    <details>
     <summary>Summary</summary>
     Vision-Language Models (VLMs) have demonstrated their widespread viability thanks to extensive training in aligning visual instructions to answers. However, this conclusive alignment leads models to ignore critical visual reasoning, and further result in failures on meticulous visual problems and unfaithful responses. In this paper, we propose Chain of Manipulations, a mechanism that enables VLMs to solve problems with a series of manipulations, where each manipulation refers to an operation on the visual input, either from intrinsic abilities (e.g., grounding) acquired through prior training or from imitating humanlike behaviors (e.g., zoom in). This mechanism encourages VLMs to generate faithful responses with evidential visual reasoning, and permits users to trace error causes in the interpretable paths. We thus train CogCoM, a general 17B VLM with a memory-based compatible architecture endowed this reasoning mechanism. Experiments show that our model achieves the state-of-the-art performance across 8 benchmarks from 3 categories, and a limited number of training steps with the data swiftly gains a competitive performance.
     <pre><center><img src="/images/cogcom_case.jpg" width="100%"></center></pre>
