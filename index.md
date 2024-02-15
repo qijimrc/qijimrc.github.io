@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="figure">
-        <img src="/images/personal.BMP">
+        <img src="/images/personal.jpg">
     </div>
     <div class="text">
         <p><b>Ji Qi</b> &nbsp;&nbsp;&nbsp; <b>齐济</b></p>
