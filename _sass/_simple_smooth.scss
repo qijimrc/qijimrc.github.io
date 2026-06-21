@@ -1,0 +1,99 @@
+// Simple and Smooth Animation Styles
+// Minimal, clean, and elegant
+
+// Simple fade animation
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Apply smooth transitions to common interactive elements (avoid global *)
+img, .card, .publications li, p, h1, h2, h3, h4, h5, a, button {
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+// Ensure content is visible
+body {
+    opacity: 1;
+    animation: fadeUp 0.5s ease;
+}
+
+// Simple hover effects
+a:hover {
+    opacity: 0.8;
+}
+
+.btn:hover,
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.publications li:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    padding-left: 5px;
+}
+
+// Navigation
+.navbar {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+// Ensure publications are visible
+.publications,
+.publications li {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+// Profile image
+.profile img {
+    border-radius: 50%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
+    }
+}
+
+// Social icons simple hover
+.social .contact-icons a:hover {
+    transform: translateY(-3px);
+}
+
+// Smooth scrollbar
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+    
+    &:hover {
+        background: #999;
+    }
+}
+
+// Remove any complex animations
+.custom-cursor,
+.cursor-follower,
+.gradient-bg,
+.background-particle {
+    display: none !important;
+}

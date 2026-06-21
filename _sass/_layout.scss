@@ -1,0 +1,99 @@
+/******************************************************************************
+ * Content
+ ******************************************************************************/
+
+ body {
+   padding-bottom: 70px;
+   color: var(--global-text-color);
+   background-color: var(--global-bg-color);
+ }
+
+ body.fixed-top-nav {
+   // Add some padding for the nav-bar.
+   padding-top: 56px;
+ }
+
+ body.sticky-bottom-footer {
+   // Remove padding below footer.
+   padding-bottom: 0;
+ }
+
+
+.container {
+  max-width: 860px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  // 改为 flex-start 使内容靠左
+
+    img.profile-image {
+      max-width: 250px;
+      width: 100%;
+      margin-left: 0 !important;
+      margin-bottom: 15px;  // 在图片和文字之间添加一些间距
+      align-self: flex-start;  // 图片也靠左对齐
+    }
+
+    .email-container {
+      margin-left: 0 !important;
+      text-align: left;
+      margin-top: 15px;
+    }
+  }
+
+  .profile-text {
+    width: 100%;
+    padding-left: 0 !important;
+    text-align: left;
+  }
+}
+
+// Profile
+.profile {
+  img {
+    width: 100%;
+  }
+}
+
+// TODO: redefine content layout.
+
+
+/******************************************************************************
+ * Publications
+ ******************************************************************************/
+
+// TODO: redefine publications layout.
+
+
+/*****************************************************************************
+* Projects
+*****************************************************************************/
+
+// TODO: redefine projects layout.
+
+@media screen and (max-width: 768px) {
+  .project-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    width: 100%;
+    max-width: 100%;
+    
+    p, div {
+      max-width: 100%;
+      overflow-x: auto;
+      word-break: break-word;
+    }
+    
+    .caption {
+      font-size: 0.8rem;
+      padding: 0 10px;
+    }
+  }
+}

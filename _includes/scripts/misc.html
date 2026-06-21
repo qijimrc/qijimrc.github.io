@@ -1,0 +1,37 @@
+{% if site.enable_tooltips %}
+<!-- Enable Tooltips -->
+<script type="text/javascript">
+$(function () {$('[data-toggle="tooltip"]').tooltip()})
+</script>
+{% endif %}
+
+
+<!-- Load Common JS -->
+<script src="{{ '/assets/js/common.js' | relative_url }}" defer></script>
+
+<!-- Image native hints (lazy/async/fetchpriority) -->
+<script src="{{ '/assets/js/lazy-hints.js' | relative_url }}" defer></script>
+
+<!-- GSAP and ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
+
+<!-- Optimized Animations (replaces simple-smooth-animations.js) -->
+<script src="{{ '/assets/js/optimized-animations.js' | relative_url }}" defer></script>
+
+<!-- Link hover prefetch for instant navigation -->
+<script type="module" defer src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js"></script>
+
+<!-- Service Worker registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('{{ "/sw.js" | relative_url }}');
+    });
+  }
+  // Use passive listeners where relevant
+  window.addEventListener('scroll', function(){}, { passive: true });
+  window.addEventListener('wheel', function(){}, { passive: true });
+  window.addEventListener('touchstart', function(){}, { passive: true });
+</script>

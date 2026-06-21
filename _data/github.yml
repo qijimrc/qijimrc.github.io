@@ -1,0 +1,12 @@
+- username: qijimrc
+  repositories:
+    - ROBUST
+
+
+- username: zai-org
+  repositories:
+    - GLM-V
+    - CogCoM
+    - CogVLM
+
+

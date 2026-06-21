@@ -1,0 +1,13 @@
+theme:
+  light_theme:
+    title_color: "5470EB"
+    icon_color: "4c71f2"
+    text_color: "000000"
+    bg_color: "ffffff"
+    border_color: "e6e6e6"
+  dark_theme:
+    title_color: "B389F5"
+    icon_color: "4c71f2"
+    text_color: "e8e8e8"
+    bg_color: "000000"
+    border_color: "424246"

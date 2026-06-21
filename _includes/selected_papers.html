@@ -1,0 +1,82 @@
+<div class="publications">
+  <h4>Selected Papers</h4>
+  <br>
+  {% bibliography -f papers -q @*[selected=true]* %}
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Google Scholar Infobox</title>
+
+<style>
+  :root{
+    /* Tweak these to match your own palette if desired */
+    --text-blue:   #1967d2;   /* Link / text colour            */
+    --pill-bg:     #f1f7ff;   /* Very light blue pill background */
+    --icon-bg:     #4285f4;   /* Google blue for the icon tile  */
+  }
+
+  /* ======  Pill-shaped infobox / button  ====== */
+  .infobox{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;                   /* space between icon & text    */
+    padding:12px 24px;
+    background:var(--pill-bg);
+    border-radius:12px;         /* reduced from 9999px to 12px for less rounded corners */
+    font:18px/1.4 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--text-blue);
+    text-decoration:none;
+    height: 40px;              /* increased height for better click area */
+    width: 730px;               /* added width to make it longer */
+
+    /* subtle depth */
+    box-shadow:0 2px 4px rgba(0,0,0,.06),
+               inset 0 1px 0 rgba(255,255,255,.35);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .infobox:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 8px rgba(0,0,0,.12),
+               inset 0 1px 0 rgba(255,255,255,.35);
+  }
+
+  .infobox:active{
+    transform:translateY(0);
+    box-shadow:0 2px 4px rgba(0,0,0,.08),
+               inset 0 1px 0 rgba(255,255,255,.35);
+  }
+
+  /* ======  Icon tile (square)  ====== */
+  .infobox__icon{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:44px;
+    height:44px;
+    min-width:44px;
+    background:var(--icon-bg);
+    border-radius:12px;
+  }
+
+  .infobox__icon svg{
+    width:26px;
+    height:26px;
+    fill:#fff;                  /* white symbol on blue tile */
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Replace the href with your actual Google Scholar profile URL
+<a class="infobox" href="https://scholar.google.com/" target="_blank" rel="noopener">
+    <i class="fa-brands fa-google"></i>
+
+  View full publication list on&nbsp;Google&nbsp;Scholar
+</a> -->
+
+</body>
+</html>

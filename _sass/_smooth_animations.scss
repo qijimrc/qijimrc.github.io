@@ -1,0 +1,313 @@
+// Smooth and Advanced Animation Styles
+// Premium fade-in effects with sophisticated easing
+
+// Keyframe animations for ultra-smooth effects
+@keyframes smoothFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes elegantSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gentleReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// Smooth cubic bezier curves for premium feel
+$smooth-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$elegant-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$gentle-ease: cubic-bezier(0.35, 0, 0.25, 1);
+
+// Apply smooth transitions globally
+* {
+    transition-timing-function: $smooth-ease;
+}
+
+// Enhanced publication items with stagger effect
+.publications {
+    li {
+        opacity: 1;
+        animation: smoothFadeIn 0.8s $elegant-ease forwards;
+        animation-fill-mode: both;
+        
+        @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.08}s;
+            }
+        }
+        
+        // Hover effect enhancement
+        transition: all 0.4s $smooth-ease;
+        
+        &:hover {
+            transform: translateX(8px);
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(var(--global-theme-color-rgb), 0.03) 20%,
+                rgba(var(--global-theme-color-rgb), 0.03) 80%,
+                transparent
+            );
+        }
+    }
+}
+
+// Cards with depth effect
+.card {
+    animation: scaleIn 0.7s $elegant-ease forwards;
+    animation-fill-mode: both;
+    transition: all 0.4s $smooth-ease;
+    
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.08),
+            0 10px 20px rgba(0, 0, 0, 0.06);
+    }
+}
+
+// Smooth text animations
+h1, h2, h3, h4, h5, h6 {
+    animation: elegantSlideUp 0.7s $elegant-ease forwards;
+    animation-fill-mode: both;
+}
+
+// Paragraphs with gentle fade
+p {
+    animation: smoothFadeIn 0.6s $gentle-ease forwards;
+    animation-fill-mode: both;
+    animation-delay: 0.2s;
+}
+
+// Navigation with premium feel
+.navbar {
+    backdrop-filter: blur(10px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.88) !important;
+    transition: all 0.4s $smooth-ease;
+    
+    &.scrolled {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+        backdrop-filter: blur(15px) saturate(200%);
+    }
+}
+
+.navbar-nav {
+    .nav-item {
+        animation: gentleReveal 0.5s $elegant-ease forwards;
+        animation-fill-mode: both;
+        
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.05}s;
+            }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s $smooth-ease;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--global-theme-color) 50%,
+                    transparent
+                );
+                transform: scaleX(0);
+                transition: transform 0.4s $elegant-ease;
+            }
+            
+            &:hover::before,
+            &.active::before {
+                transform: scaleX(1);
+            }
+        }
+    }
+}
+
+// Profile image with floating effect
+.profile img {
+    animation: scaleIn 0.8s $elegant-ease forwards;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+    transition: all 0.4s $smooth-ease;
+    
+    &:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.12),
+            0 12px 24px rgba(0, 0, 0, 0.08);
+    }
+}
+
+// Social icons with bounce
+.social .contact-icons a {
+    display: inline-block;
+    animation: scaleIn 0.5s $elegant-ease forwards;
+    animation-fill-mode: both;
+    
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            animation-delay: #{0.8 + $i * 0.1}s;
+        }
+    }
+    
+    transition: all 0.3s $smooth-ease;
+    
+    &:hover {
+        transform: translateY(-5px) rotate(5deg);
+    }
+}
+
+// News items cascade
+.news {
+    td {
+        animation: gentleReveal 0.6s $elegant-ease forwards;
+        animation-fill-mode: both;
+        
+        @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{$i * 0.1}s;
+            }
+        }
+    }
+}
+
+// Images with smooth load
+img {
+    opacity: 1;
+    transition: all 0.5s $smooth-ease;
+    
+    &.loading {
+        opacity: 0;
+        filter: blur(5px);
+        transform: scale(0.95);
+    }
+    
+    &.loaded {
+        animation: smoothFadeIn 0.8s $elegant-ease forwards;
+    }
+}
+
+// Footer entrance
+footer {
+    animation: elegantSlideUp 0.8s $elegant-ease forwards;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+}
+
+// Smooth scroll indicator
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        var(--global-theme-color) 0%,
+        var(--global-hover-color) 100%
+    );
+    z-index: 10000;
+    transition: width 0.2s $smooth-ease;
+}
+
+// Performance optimizations
+@media (prefers-reduced-motion: no-preference) {
+    // Enable smooth scroll only if motion is OK
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+// Ensure content is visible even if JS fails
+noscript {
+    * {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+// Loading state
+body.loading {
+    * {
+        animation-play-state: paused;
+    }
+}
+
+body.loaded {
+    * {
+        animation-play-state: running;
+    }
+}
+
+// Glass morphism for modern browsers
+@supports (backdrop-filter: blur(10px)) {
+    .card,
+    .navbar {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+// High-end shadow effects
+@mixin premium-shadow {
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.02),
+        0 4px 8px rgba(0, 0, 0, 0.03),
+        0 8px 16px rgba(0, 0, 0, 0.04),
+        0 16px 32px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+    @include premium-shadow;
+}
+
+// Ensure visibility
+.publications,
+.publications li,
+.selected_papers {
+    visibility: visible !important;
+    opacity: 1 !important;
+}

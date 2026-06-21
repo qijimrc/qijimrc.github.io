@@ -1,0 +1,451 @@
+---
+layout: default
+---
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" /> -->
+
+
+
+
+<!-- Panelbear Analytics - We respect your privacy -->
+<script async src="https://cdn.panelbear.com/analytics.js?site=93OoYW0z85N"></script>
+<script>
+    window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+    panelbear('config', { site: '93OoYW0z85N' });
+</script>
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h3 class="post-title">
+     {% if site.title != "blank" %}<span class="font-weight-thin">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }} &nbsp; <span style="font-family: 'PingFang SC', serif; color: #504c4c;">齐济</span> {% else %}{{ site.title }}
+     {% endif %}
+    </h3>
+    <!-- <div class="job-info" style="margin-top: 10px; text-align: left;>
+      <p style="color: #402F7C; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px;">
+        Assistant Professor @ Tsinghua University<br>
+      </p>
+    </div> -->
+    <div>
+      <span id="date" style="color: rgb(53, 52, 52); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"></span>.
+    </div>
+
+
+
+    <!-- <script>
+      const dateElement = document.getElementById('date');
+      const today = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      dateElement.textContent = today.toLocaleDateString('en-US', options);
+    </script>
+    
+    <div>
+      <span style="color: rgb(57, 56, 56); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">  </span>
+      <span id="weather-text" style="color: rgb(65, 64, 64); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"></span>
+      <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beijing Weather Icon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+  <style>
+    #weather-icon i {
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div id="weather-icon"></div>
+    
+    </div> -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        const apiKey = '916a98b48a576641bb870cfd458d045f';
+        const city = 'Beijing';
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            const weatherCode = data.weather[0].id;
+            const iconClass = `wi wi-owm-${weatherCode}`;
+            $('#weather-icon').addClass(iconClass);
+          })
+          .catch((error) => console.error('Error fetching weather data:', error));
+      });
+    </script>
+
+    
+    <script>
+      const textElement = document.getElementById('weather-text');
+      const apiKey = '916a98b48a576641bb870cfd458d045f';
+      const city = 'Beijing';
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const temperature = (data.main.temp).toFixed(1);
+          const fahrenheit = ((temperature * 9/5) + 32).toFixed(1);
+          const description = data.weather[0].description;
+          textElement.textContent = `@${city} ${temperature}°C / ${fahrenheit}°F, ${description}.`;
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error);
+          textElement.textContent = 'Unable to fetch weather data.';
+        });
+    </script>
+    
+   </small>
+
+  </header>
+  <br>
+  <article style="max-width: 780px">
+    {% if page.profile %}
+    <div class="profile float-right" >
+      {% if page.profile.image %}
+        <img class="img-fluid rounded profile-image" src="{{ page.profile.image | prepend: '/assets/img/' | relative_url }}" style="width:100%; max-width: 375px; margin-top: 30px; border: none; margin-left: -47px;">
+      {% endif %}
+      <div class="profile-name" style="margin-top: 10px; text-align: left; margin-left: -40px;">
+        <p style="color: #402F7C; font-size: 15px;">Postdoc Fellow @ Zhipu&Tsinghua</p>
+      <!-- <div class="email-container" style="margin-top: 10px; text-align: left; margin-left: -47px;">
+        <a href="mailto:qijimrc@gmail.com" style="text-decoration: none; color: #402F7C; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; transition: color 0.3s ease;">
+          <i class="fas fa-envelope" style="margin-right: 5px;"></i>
+          qijimrc AT gmail DOT com
+        </a>
+      </div> -->
+    </div>
+      
+
+
+    </div>
+    <div class="profile-text">
+      <div class="clearfix" style="width: 100%; max-width: 800px; padding-left: 52px;">
+        {{ content }}
+      </div>
+    </div>
+
+    {% endif %}
+
+
+
+  </article>
+
+
+  <!-- <div class="recruitment-infobox" style="width: 88%; background: transparent; margin-top: 15px; margin-bottom: 0px;">
+    <div class="infobox-header" onclick="toggleInfobox()">
+      <i class="fas fa-plus-circle toggle-icon"></i>
+      <h6 style="margin: 0; color: #3E3E3E; font-size: 15px; font-weight: 400; display: flex; align-items: center; width: 100%;">
+    </div>
+  </div> -->
+
+  <!-- below for placeholder to occupy space -->
+  <div style="width: 88%; background: transparent; margin-top: 15px; margin-bottom: 0px;">
+    <div>
+      <i></i>
+      <h6 style="margin: 0; color: #ffffff; font-size: 15px; font-weight: 400; display: flex; align-items: center; width: 100%;">
+    </div>
+  </div>
+  
+  <style>
+    .lab-links {
+  margin-top: 6px;
+  display: flex;
+  gap: 20px;
+}
+.lab-link {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #365485;
+  text-decoration: none;
+  transition: color 0.18s;
+  font-weight: 500;
+}
+.lab-link:hover {
+  color: #1768ac;
+  text-decoration: underline;
+}
+.lab-link i {
+  font-size: 1.13em;
+  margin-right: 7px;
+  color: #5172a1;
+  vertical-align: middle;
+  transition: color 0.15s;
+}
+.lab-link:hover i {
+  color: #1768ac;
+}
+    .recruitment-infobox {
+      margin: 25px 0;
+      border-radius: 12px;
+      background-color: rgba(240, 245, 250, 0.5);
+      overflow: hidden;
+      width: 100%; /* 使用整个宽度 */
+      max-width: none; /* 取消最大宽度限制 */
+      transition: all 0.3s ease;
+    }
+    .recruitment-infobox:hover {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .infobox-header {
+      padding: 14px 18px;
+      background: linear-gradient(to right, rgba(240, 244, 249, 0.8), rgba(245, 249, 252, 0.8)); /* Increased transparency */
+      font-size: 16px;
+      font-weight: 500;
+      color: #3a4a64;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .infobox-header:hover {
+      background: linear-gradient(to right, #e8f2fa, #edf5fc);
+    }
+    .toggle-icon {
+      margin-right: 12px;
+      color: #4a6fa5;
+      transition: transform 0.3s ease, color 0.2s;
+    }
+    .toggle-icon.open {
+      transform: rotate(45deg);
+      color: #3a5a8c;
+    }
+    .infobox-content {
+      padding: 18px;
+      line-height: 1.6;
+      color: #445566;
+      background-color: rgba(255,255,255,0.8);
+    }
+    .infobox-content p {
+      margin-bottom: 12px;
+    }
+    .infobox-content b {
+      color: #3a4a64;
+      font-weight: 600;
+    }
+  </style>
+  
+  <script>
+    function toggleInfobox() {
+      const content = document.querySelector('.infobox-content');
+      const icon = document.querySelector('.toggle-icon');
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        icon.classList.add('open');
+        icon.classList.remove('fa-plus-circle');
+        icon.classList.add('fa-times-circle');
+      } else {
+        content.style.display = 'none';
+        icon.classList.remove('open');
+        icon.classList.remove('fa-times-circle');
+        icon.classList.add('fa-plus-circle');
+      }
+    }
+  </script>
+  
+
+  <div class="post">
+
+
+    <!-- <div style="background-color: #F9F7FB; padding: 15px; border-radius: 8px; max-width: 730px;">
+      <p style="color: #402F7C; margin: 0;">
+        I will be recruiting.
+      </p>
+    </div> -->
+
+
+    <!-- <p style="margin: 5px 0;">The <a href="https://www.nature.com/articles/s42256-023-00626-4" style="color: #0076df;">delta tuning</a> paper gets published on <a href="https://www.nature.com/natmachintell/" style="color: #0076df;">Nature Machine Intelligence</a>, and it is selected as the cover article of the journal's <a href="https://www.nature.com/natmachintell/volumes/5/issues/3" style="color: #0076df;">March issue</a>.</p> -->
+
+
+    <!-- <div class="news-infobox" style="border: 0px solid #828282; border-radius: 10px; padding: 10px; background-color: #c397ed09; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 730px; margin-left: -0px;"> -->
+      <br>
+
+
+    <div class="news-infobox" style="
+        border: 0px solid #828282; 
+        border-radius: 10px; 
+        padding: 11px; 
+        padding-top: 10px;
+        max-width: 730px; 
+        margin-left: -0px;
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        overflow-y: auto;
+        max-height: 250px;
+    " 
+    onmouseover="this.style.boxShadow='0 7px 26px rgba(58,175,169,0.13)'; this.style.backgroundColor='#fcfefe';"
+    onmouseout="this.style.boxShadow='0 2px 8px rgba(58,175,169,0.06)'; this.style.backgroundColor='#f8fafb';">
+
+    <style>
+      .news-infobox {
+        background: #f8fafb; 
+        border-radius: 14px;
+        padding: 28px 22px 18px 22px;
+        box-shadow: 0 2px 8px rgba(58,175,169,0.06);
+        transition: box-shadow 0.3s, background 0.3s;
+        max-width: 730px;
+        border: 1px solid #dbecec;
+      }
+      
+      .news-infobox:hover {
+        box-shadow: 0 7px 26px rgba(58,175,169,0.13);
+        background: #f3faf9;
+      }
+      
+      .news-infobox ul {
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+      }
+      
+      .news-infobox ul li {
+        margin-bottom: 13px;
+        padding: 12px 12px 4px 10px;
+        border-radius: 7px;
+        background: none;
+      }
+      
+      .news-infobox ul li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      
+      .news-infobox h6 {
+        font-size: 15.5px;
+        margin: 0 0 4px 0;
+        color: #2e3539;      /* 比正文色略深但不刺眼 */
+        font-weight: 450;    /* 稍加粗而已 */
+        letter-spacing: 0.01em;
+        line-height: 1.4;
+      }
+            
+      .news-infobox span {
+        display: block;
+        margin-bottom: 4px;
+        color: #5b7b88;
+        font-size: 0.9em;
+      }
+      
+      .news-infobox p {
+        margin: 5px 0 0 0;
+        line-height: 1.7;
+        color: #294550;
+        font-size: 15px;
+      }
+      
+
+.news-infobox a {
+  color: #48656b;
+  
+  text-underline-offset: 1.5px;
+  transition: color 0.18s, background 0.18s;
+  border-radius: 4px;
+  padding: 0 2px;
+  font-weight: 500;
+}
+.news-infobox a:hover,
+.news-infobox a:focus {
+  color: #044068;
+  background: #ebf7fa;
+  text-decoration: underline;
+}
+      </style>
+      <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 10px;">
+          <h6 style="margin: 0;  font-size: 15px;">New Research on Large Multimodal Models</h6>
+          <span style="color: #828282; font-size: 0.8em;">April 2026</span>
+          <p style="margin: 5px 0;"> We recently released <a href="https://docs.z.ai/guides/vlm/glm-5v-turbo">GLM-5V-Turbo</a>, the first multimodal coding foundation model, built for vision-based coding tasks.
+          </p>
+        </li>
+        <li style="margin-bottom: 10px;">
+          <h6 style="margin: 0;  font-size: 15px;">New Research on Large Multimodal Models</h6>
+          <span style="color: #828282; font-size: 0.8em;">July 2025</span>
+          <p style="margin: 5px 0;"> We recently released <a href="https://arxiv.org/abs/2507.01006">GLM-4.1V and GLM-4.5V</a>, two foundational and powerful large multimodal models.
+          </p>
+        </li>
+        <li style="margin-bottom: 10px;">
+          <h6 style="margin: 0; ; font-size: 15px;">New Research on Multimodal Video Understanding</h6>
+          <span style="color: #828282; font-size: 0.8em;">April 2025</span>
+          <p style="margin: 5px 0;"> We recently released <a href="https://quicksviewer.github.io/" >Quicksviewer</a>, an LMM for efficient long video understanding via reinforced compression of video cubes.
+          </p>
+        </li>
+      </ul>
+    </div>
+
+<!-- Add a sidebar with content -->
+
+
+
+
+
+</article>
+    {% if page.selected_papers %}
+      {% include selected_papers.html %}
+    {% endif %}
+    {% if page.news %}
+      {% include news.html %}
+    {% endif %}
+<br>
+
+
+
+
+<h4>Service</h4>
+<ul>
+  <li>NeurIPS 2022~2025</li>
+  <li>ICML 2022~2025</li>
+  <li>ICLR 2022~2025</li>
+  <li>CVPR 2022~2025</li>
+  <li>ICCV 2022~2025</li>
+  <li>ACL 2022~2025</li>
+  <li>EMNLP 2022~2025</li>
+</ul>
+
+
+<!-- Hit Counter -->
+
+
+
+  
+  
+
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+
+
+<!-- <iframe width="87%" height="200" style="margin-left: 0px;" src="https://api.maptiler.com/maps/openstreetmap/?key=2V215Qvhk6kDer0iYTH7#16.4/40.00006/116.31593"></iframe> -->
+
+
+<div align="center">
+  <!-- hitwebcounter Code START -->
+
+  <!-- hitwebcounter Code START -->
+  <a href="https://www.hitwebcounter.com" target="_blank">
+  <img src="https://hitwebcounter.com/counter/counter.php?page=7999605&style=0007&nbdigits=8&type=page&initCount=756" title="Free Counter" Alt="web counter"   border="0" /></a>         
+                            
+</div>          

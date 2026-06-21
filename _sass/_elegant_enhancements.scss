@@ -1,0 +1,375 @@
+// Elegant Enhancements Stylesheet
+// Advanced animations and smooth transitions
+
+// Custom cursor styles
+.custom-cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--global-theme-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: rgba(var(--global-theme-color-rgb), 0.1);
+    border: 1px solid var(--global-theme-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+// Keep default cursor - custom cursor is additional
+// Remove cursor: none to maintain usability
+
+// Gradient background animation
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        -45deg,
+        rgba(238, 119, 82, 0.02),
+        rgba(231, 60, 126, 0.02),
+        rgba(35, 166, 213, 0.02),
+        rgba(35, 213, 171, 0.02)
+    );
+    background-size: 400% 400%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+// Enhanced link underline animation
+a {
+    position: relative;
+    transition: color 0.3s ease;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--global-theme-color);
+        transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    &:hover::after {
+        width: 100%;
+    }
+}
+
+// Smooth transitions for all interactive elements
+button, .btn, input, textarea, select {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+// Enhanced card styles with glass morphism
+.card {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px 0 rgba(31, 38, 135, 0.15);
+        background: rgba(255, 255, 255, 0.8);
+    }
+}
+
+// Publication items enhanced hover
+.publications li {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 0;
+        background: var(--global-theme-color);
+        transition: height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    &:hover::before {
+        height: 60%;
+    }
+    
+    &:hover {
+        padding-left: 10px;
+    }
+}
+
+// Smooth image loading effect - only for lazy loaded images
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    
+    &.loaded {
+        opacity: 1;
+    }
+}
+
+// Ensure all other images are visible
+img:not([data-src]) {
+    opacity: 1;
+}
+
+// Profile image enhancements
+.profile img {
+    border-radius: 50%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    &:hover {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+}
+
+// Navigation bar glass morphism
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(var(--global-bg-color-rgb), 0.85) !important;
+    transition: all 0.3s ease;
+    
+    &.scrolled {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+}
+
+// Enhanced button styles
+.btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+        z-index: -1;
+    }
+    
+    &:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+// Smooth scrollbar styling
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--global-theme-color);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    
+    &:hover {
+        background: var(--global-hover-color);
+    }
+}
+
+// Text selection styling
+::selection {
+    background: rgba(var(--global-theme-color-rgb), 0.2);
+    color: var(--global-theme-color);
+}
+
+::-moz-selection {
+    background: rgba(var(--global-theme-color-rgb), 0.2);
+    color: var(--global-theme-color);
+}
+
+// Loading animation for lazy content
+.lazy-load {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    &.loaded {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Subtle text shadow for headings
+h1, h2, h3, h4, h5 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+// Social icons enhancement
+.social .contact-icons a {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: var(--global-theme-color);
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.3;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: -1;
+    }
+    
+    &:hover::before {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+// Animated underline for active nav items
+.navbar-nav .nav-item.active > .nav-link {
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 2px;
+        background: var(--global-theme-color);
+        animation: slideIn 0.3s ease forwards;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 30px;
+    }
+}
+
+// Floating animation
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+// Pulse animation for important elements
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--global-theme-color-rgb), 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--global-theme-color-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--global-theme-color-rgb), 0);
+    }
+}
+
+// Important buttons pulse effect
+.btn-primary, .btn-important {
+    animation: pulse 2s infinite;
+}
+
+// Smooth fade in animation
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Apply fade in to main content
+.container > * {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+// News items hover effect
+.news td {
+    transition: all 0.3s ease;
+    
+    &:hover {
+        padding-left: 10px;
+        color: var(--global-theme-color);
+    }
+}
+
+// Enhanced focus states
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--global-theme-color-rgb), 0.1);
+    border-color: var(--global-theme-color);
+}
+
+// Responsive typography scaling
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    h4 { font-size: 1.1rem; }
+    h5 { font-size: 1rem; }
+}
+
+// Dark mode support enhancements
+@media (prefers-color-scheme: dark) {
+    .gradient-bg {
+        opacity: 0.5;
+    }
+    
+    .card {
+        background: rgba(30, 30, 30, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .custom-cursor {
+        mix-blend-mode: screen;
+    }
+}
